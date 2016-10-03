@@ -4,13 +4,13 @@
 
 namespace TPCH {
 namespace Fixtures {
-std::string customerData;
-std::string nationData;
-std::string ordersData;
-std::string partData;
-std::string partsuppData;
-std::string regionData;
-std::string supplierData;
+extern std::string customerData;
+extern std::string nationData;
+extern std::string ordersData;
+extern std::string partData;
+extern std::string partsuppData;
+extern std::string regionData;
+extern std::string supplierData;
 } // Fixtures
 } // TPCH
 
