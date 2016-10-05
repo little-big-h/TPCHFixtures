@@ -1,8 +1,7 @@
 #include "TPCHFixtures.hpp"
 
-static const std::map<
-		const std::string,
-		const std::list<const std::pair<const std::string, const TPCH::Fixtures::SQLType>>>
+static const std::map<const std::string,
+											const std::list<std::pair<const std::string, const TPCH::Fixtures::SQLType>>>
 		schema{{"region",
 						{{"r_regionkey", TPCH::Fixtures::SQLType::integer},
 						 {"r_name", TPCH::Fixtures::SQLType::string},
@@ -74,7 +73,7 @@ static const std::map<
 						 {"l_comment", TPCH::Fixtures::SQLType::string}}}};
 
 const std::map<const std::string,
-							 const std::list<const std::pair<const std::string, const TPCH::Fixtures::SQLType>>>&
+							 const std::list<std::pair<const std::string, const TPCH::Fixtures::SQLType>>>&
 TPCH::Fixtures::getSchema() {
 	return schema;
 }
