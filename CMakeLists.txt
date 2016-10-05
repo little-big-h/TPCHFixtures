@@ -8,6 +8,6 @@ foreach(file customer lineitem nation orders part partsupp region supplier)
 	list(APPEND datafiles ${file}.cpp)
 endforeach(file)
 
-add_library(TPCHFixtures STATIC ${datafiles})
+add_library(TPCHFixtures STATIC TPCHFixtures.cpp ${datafiles})
 set_property(TARGET TPCHFixtures PROPERTY CXX_STANDARD 14)
 SET_TARGET_PROPERTIES(TPCHFixtures PROPERTIES LINKER_LANGUAGE CXX)
