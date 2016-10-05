@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.2)
 
 set(datafiles)
 foreach(file customer lineitem nation orders part partsupp region supplier)
