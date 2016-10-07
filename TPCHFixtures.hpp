@@ -18,6 +18,7 @@ extern std::string partData;
 extern std::string partsuppData;
 extern std::string regionData;
 extern std::string supplierData;
+extern std::string lineitemData;
 } // Fixtures
 } // TPCH
 
