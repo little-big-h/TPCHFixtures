@@ -1,7 +1,7 @@
 #include "TPCHFixtures.hpp"
+using namespace std;
 
-static const std::map<const std::string,
-											const std::list<std::pair<const std::string, const TPCH::Fixtures::SQLType>>>
+static const std::map<std::string, std::list<std::pair<std::string, TPCH::Fixtures::SQLType>>>
 		schema{{"region",
 						{{"r_regionkey", TPCH::Fixtures::SQLType::integer},
 						 {"r_name", TPCH::Fixtures::SQLType::string},
@@ -72,8 +72,28 @@ static const std::map<const std::string,
 						 {"l_shipmode", TPCH::Fixtures::SQLType::string},
 						 {"l_comment", TPCH::Fixtures::SQLType::string}}}};
 
-const std::map<const std::string,
-							 const std::list<std::pair<const std::string, const TPCH::Fixtures::SQLType>>>&
+static const map<string, string> primaryKeys{{"region", "r_regionkey"},
+																						 {"nation", "n_nationkey"},
+																						 {"part", "p_partkey"},
+																						 {"supplier", "s_suppkey"},
+																						 {"customer", "c_custkey"},
+																						 {"order", "o_orderkey"},
+																						 {"partsupp", "ps_partkey_ps_suppkey"}};
+
+static const std::map<std::string, std::list<std::pair<std::string, std::string>>> foreignKeys{
+		{"region", {}},		{"nation", {}},
+		{"supplier", {}}, {"customer", {}},
+		{"part", {}},			{"partsupp", {{"ps_partkey", "part"}, {"ps_suppkey", "supplier"}}},
+		{"orders", {}},		{"lineitem", {}}};
+
+const std::map<std::string, std::list<std::pair<std::string, TPCH::Fixtures::SQLType>>>&
 TPCH::Fixtures::getSchema() {
 	return schema;
 }
+
+const std::map<std::string, std::string>& TPCH::Fixtures::getPrimaryKeys() { return primaryKeys; };
+
+const std::map<std::string, std::list<std::pair<std::string, std::string>>>&
+TPCH::Fixtures::getForeignKeys() {
+	return foreignKeys;
+};
