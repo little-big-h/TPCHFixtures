@@ -81,10 +81,14 @@ static const map<string, string> primaryKeys{{"region", "r_regionkey"},
 																						 {"partsupp", "ps_partkey_ps_suppkey"}};
 
 static const std::map<std::string, std::list<std::pair<std::string, std::string>>> foreignKeys{
-		{"region", {}},		{"nation", {}},
-		{"supplier", {}}, {"customer", {}},
-		{"part", {}},			{"partsupp", {{"ps_partkey", "part"}, {"ps_suppkey", "supplier"}}},
-		{"orders", {}},		{"lineitem", {}}};
+		{"region", {}},
+		{"nation", {{"n_regionkey", "region"}}},
+		{"supplier", {{"s_nationkey", "nation"}}},
+		{"customer", {{"c_nationkey", "nation"}}},
+		{"part", {}},
+		{"partsupp", {{"ps_partkey", "part"}, {"ps_suppkey", "supplier"}}},
+		{"orders", {}},
+		{"lineitem", {}}};
 
 const std::map<std::string, std::list<std::pair<std::string, TPCH::Fixtures::SQLType>>>&
 TPCH::Fixtures::getSchema() {
