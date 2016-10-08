@@ -72,32 +72,32 @@ static const std::map<std::string, std::list<std::pair<std::string, TPCH::Fixtur
 						 {"l_shipmode", TPCH::Fixtures::SQLType::string},
 						 {"l_comment", TPCH::Fixtures::SQLType::string}}}};
 
-static const map<string, string> primaryKeys{{"region", "r_regionkey"},
-																						 {"nation", "n_nationkey"},
-																						 {"part", "p_partkey"},
-																						 {"supplier", "s_suppkey"},
-																						 {"customer", "c_custkey"},
-																						 {"order", "o_orderkey"},
-																						 {"partsupp", "ps_partkey_ps_suppkey"}};
+static const map<string, string> primaryKeys{
+		{"region", "r_regionkey"}, {"nation", "n_nationkey"},
+		{"part", "p_partkey"},		 {"lineitem", "l_orderkey_l_linenumber"},
+		{"supplier", "s_suppkey"}, {"customer", "c_custkey"},
+		{"orders", "o_orderkey"},	{"partsupp", "ps_partkey_ps_suppkey"}};
 
-static const std::map<std::string, std::list<std::pair<std::string, std::string>>> foreignKeys{
+static const map<string, list<pair<vector<string>, string>>> foreignKeys{
 		{"region", {}},
-		{"nation", {{"n_regionkey", "region"}}},
-		{"supplier", {{"s_nationkey", "nation"}}},
-		{"customer", {{"c_nationkey", "nation"}}},
+		{"nation", {{{"n_regionkey"}, "region"}}},
+		{"supplier", {{{"s_nationkey"}, "nation"}}},
+		{"customer", {{{"c_nationkey"}, "nation"}}},
 		{"part", {}},
-		{"partsupp", {{"ps_partkey", "part"}, {"ps_suppkey", "supplier"}}},
-		{"orders", {}},
-		{"lineitem", {}}};
+		{"partsupp", {{{"ps_partkey"}, "part"}, {{"ps_suppkey"}, "supplier"}}},
+		{"orders", {{{"o_custkey"}, "customer"}}},
+		{"lineitem",
+		 {{{"l_orderkey"}, "orders"},
+			{{"l_partkey"}, "part"},
+			{{"l_partkey", "l_suppkey"}, "partsupp"},
+			{{"l_suppkey"}, "supplier"}}}};
 
-const std::map<std::string, std::list<std::pair<std::string, TPCH::Fixtures::SQLType>>>&
-TPCH::Fixtures::getSchema() {
+const map<string, list<pair<string, TPCH::Fixtures::SQLType>>>& TPCH::Fixtures::getSchema() {
 	return schema;
 }
 
-const std::map<std::string, std::string>& TPCH::Fixtures::getPrimaryKeys() { return primaryKeys; };
+const map<string, string>& TPCH::Fixtures::getPrimaryKeys() { return primaryKeys; };
 
-const std::map<std::string, std::list<std::pair<std::string, std::string>>>&
-TPCH::Fixtures::getForeignKeys() {
+const map<string, list<pair<vector<string>, string>>>& TPCH::Fixtures::getForeignKeys() {
 	return foreignKeys;
 };
