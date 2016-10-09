@@ -11,8 +11,9 @@ namespace Fixtures {
 enum class SQLType { integer, string, date, decimal15_2 };
 
 const std::map<std::string, std::list<std::pair<std::string, SQLType>>>& getSchema();
-const std::map<std::string, std::string>& getPrimaryKeys();
-	const std::map<std::string, std::list<std::pair<std::vector<std::string>, std::string>>>& getForeignKeys();
+const std::map<std::string, std::vector<std::string>>& getPrimaryKeys();
+const std::map<std::string, std::list<std::pair<std::vector<std::string>, std::string>>>&
+getForeignKeys();
 
 extern std::string customerData;
 extern std::string nationData;

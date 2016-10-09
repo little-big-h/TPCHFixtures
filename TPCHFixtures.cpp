@@ -72,11 +72,11 @@ static const std::map<std::string, std::list<std::pair<std::string, TPCH::Fixtur
 						 {"l_shipmode", TPCH::Fixtures::SQLType::string},
 						 {"l_comment", TPCH::Fixtures::SQLType::string}}}};
 
-static const map<string, string> primaryKeys{
-		{"region", "r_regionkey"}, {"nation", "n_nationkey"},
-		{"part", "p_partkey"},		 {"lineitem", "l_orderkey_l_linenumber"},
-		{"supplier", "s_suppkey"}, {"customer", "c_custkey"},
-		{"orders", "o_orderkey"},	{"partsupp", "ps_partkey_ps_suppkey"}};
+static const map<string, vector<string>> primaryKeys{
+		{"region", {"r_regionkey"}}, {"nation", {"n_nationkey"}},
+		{"part", {"p_partkey"}},		 {"lineitem", {"l_orderkey", "l_linenumber"}},
+		{"supplier", {"s_suppkey"}}, {"customer", {"c_custkey"}},
+		{"orders", {"o_orderkey"}},	{"partsupp", {"ps_partkey", "ps_suppkey"}}};
 
 static const map<string, list<pair<vector<string>, string>>> foreignKeys{
 		{"region", {}},
@@ -96,7 +96,7 @@ const map<string, list<pair<string, TPCH::Fixtures::SQLType>>>& TPCH::Fixtures::
 	return schema;
 }
 
-const map<string, string>& TPCH::Fixtures::getPrimaryKeys() { return primaryKeys; };
+const map<string, vector<string>>& TPCH::Fixtures::getPrimaryKeys() { return primaryKeys; };
 
 const map<string, list<pair<vector<string>, string>>>& TPCH::Fixtures::getForeignKeys() {
 	return foreignKeys;
